@@ -18,8 +18,21 @@ export class AuthService {
       username:'david_r',
       password:'3478*#54'
     }  ).pipe(
-      tap( token => this.token = token)
+      tap( token => {
+        this.token = token;
+        window.localStorage.setItem("token",JSON.stringify(token))
+      })
     )
+  }
 
+  logout(){
+    this.token = '';
+    window.localStorage.removeItem("token");
+  }
+
+  get isLoggedIn(){
+    // true if it is not equal to empty is string => user is logged in
+    // false if it is equal to empty string => user is not logged in
+    return this.token !== '';
   }
 }

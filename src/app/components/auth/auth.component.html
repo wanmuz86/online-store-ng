@@ -1,0 +1,11 @@
+<div class="container mt-3">
+    <!-- It will be hidden when user is logged in , true-->
+<button (click)="loginPressed()" [hidden]="this.authService.isLoggedIn">Login</button>
+<!-- If user is not login , hidden should be false -->
+<div>
+<p [hidden]="!this.authService.isLoggedIn">    
+    Hi, Admin <button (click)="logoutPressed()" >Logout</button>
+    
+</p>
+</div>
+</div>

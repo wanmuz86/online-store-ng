@@ -3,7 +3,7 @@
         <h2>{{product.title}}</h2>
         <img [src]="product.image" alt="product.title">
         <p>{{product.price | currency:'USD'}}</p>
-        <div>
+        <div [hidden]="!this.authService.isLoggedIn">
             <input placeholder="Enter price" type="number" #price>
             <button (click)="changePrice(price.valueAsNumber)">Edit price</button>
         </div>

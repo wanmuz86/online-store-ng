@@ -3,6 +3,7 @@ import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,13 +19,15 @@ export class ProductDetailComponent implements OnChanges{
 
   product$ : Observable<Product> | undefined = undefined;
 
-  constructor(private productService:ProductService){
+  constructor(private productService:ProductService,
+    public authService:AuthService
+    ){
 
   }
   ngOnChanges(changes: SimpleChanges): void {
    
    this.product$ = this.productService.getProductById(this.id);
-   
+
   }
   changePrice(price:number){
     // THE API CALL happen
