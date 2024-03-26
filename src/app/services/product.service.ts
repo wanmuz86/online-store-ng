@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,map } from 'rxjs';
 
 interface ProductDTO {
@@ -23,6 +23,19 @@ export class ProductService {
 
   // The class in the website
   getProducts():Observable<Product[]>{
+
+    // Token is stored as a string with format {"token":"xxxxx"}
+    // i want to retrieve *****
+    // JSON.parse will transform the String into Object
+    // I retrieve the value "token" from the object
+    // let tokenJson = JSON.parse(localStorage.getItem("token") ?? "")
+    // let token = tokenJson["token"]
+    // console.log(token)
+
+    // const options = {
+    //   headers : new HttpHeaders({Authorization:token})
+    // };
+
     // Call the API and get a response of type Array of product / DTO
     return this.httpClient.get<ProductDTO[]>(this.url).pipe(
       // Transform it into observable
@@ -56,7 +69,7 @@ export class ProductService {
 
 
   convertDTOtoProduct(dto: ProductDTO) : Product {
-    console.log(dto);
+    
     return {
       id:dto.id,
       title:dto.title,
