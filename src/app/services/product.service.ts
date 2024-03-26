@@ -7,14 +7,23 @@ import { Observable,map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+interface ProductDTO {
+  id:number,
+  title:string,
+  image:string,
+  price:number
+}
+
 export class ProductService {
 
   private url = "https://fakestoreapi.com/products";
   constructor(private httpClient:HttpClient) { }
 
+  // The class in the website
   getProducts():Observable<Product[]>{
-    // Call the API and get a response of type Array of product
-    return this.httpClient.get<Product[]>(this.url).pipe(
+    // Call the API and get a response of type Array of product / DTO
+    return this.httpClient.get<ProductDTO[]>(this.url).pipe(
       // Transform it into observable
       map(
         // for each of the response
@@ -29,7 +38,15 @@ export class ProductService {
         })
       )
     )
+  }
 
+  convertDTOtoProduct(dto: ProductDTO) : Product {
+    return {
+      id:dto.id,
+      title:dto.title,
+      image:dto.image,
+      price:dto.price
+    }
   }
   
   // getProducts(): Product[] {
