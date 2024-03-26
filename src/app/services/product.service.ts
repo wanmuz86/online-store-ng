@@ -3,11 +3,6 @@ import { Product } from '../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable,map } from 'rxjs';
 
-// Inject HttpClient inside service - Import inject implement
-@Injectable({
-  providedIn: 'root'
-})
-
 interface ProductDTO {
   id:number,
   title:string,
@@ -15,7 +10,13 @@ interface ProductDTO {
   price:number
 }
 
+// Inject HttpClient inside service - Import inject implement
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ProductService {
+  
 
   private url = "https://fakestoreapi.com/products";
   constructor(private httpClient:HttpClient) { }
@@ -29,18 +30,23 @@ export class ProductService {
         // for each of the response
         // I will transform the response into product object (map)
         response => response.map(val =>{
-          return {
-            id:val.id,
-            title:val.title,
-            price:val.price,
-            image:val.image
-          }
+          return this.convertDTOtoProduct(val);
         })
       )
     )
   }
 
+  getProductById(id:number):Observable<Product>{
+    // I call the API, In the API I will get an object / DTO = response
+    return this.httpClient.get<ProductDTO>(`${this.url}/${id}`).pipe(
+      // The response that I get, I will convert it right to Product[interface]
+      map(response => this.convertDTOtoProduct(response))
+    );
+  }
+
+
   convertDTOtoProduct(dto: ProductDTO) : Product {
+    console.log(dto);
     return {
       id:dto.id,
       title:dto.title,

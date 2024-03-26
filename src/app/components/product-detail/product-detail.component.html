@@ -1,1 +1,7 @@
-<p>Product detail page for id {{id}}</p>
+<div class="container">
+    <div class="card p-5 my-3">
+        <h2>{{product?.title}}</h2>
+        <img [src]="product?.image" alt="product.title">
+        <p>{{product?.price | currency:'USD'}}</p>
+    </div>
+</div>
