@@ -1,6 +1,6 @@
 <div class="container my-5">
     <h2 class="my-3">Our products</h2>
-    <div class="card p-3 m-3 bg-light" *ngFor="let product of products">
+    <div class="card p-3 m-3 bg-light" *ngFor="let product of products" (click)="selectProduct(product.id)">
         <div class="row">
             <div class="col-2">
                 <!-- Using property binding i retrive value of image from the variable-->
@@ -12,4 +12,5 @@
             </div>
         </div>
     </div>
+    <app-product-detail [id]="selectedProductId" *ngIf="selectedProductId"></app-product-detail>
 </div>
