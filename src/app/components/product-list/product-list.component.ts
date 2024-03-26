@@ -23,7 +23,11 @@ export class ProductListComponent implements OnInit {
   }
   // 3) Implement / call the function on ngOnInit
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
+    // this.products = this.productService.getProducts();
+    this.productService.getProducts().subscribe(
+      response => this.products = response,
+      error => console.log(error)
+    )
   }
 
 }
