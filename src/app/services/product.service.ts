@@ -44,6 +44,16 @@ export class ProductService {
     );
   }
 
+  updateProduct(id:number,price:number):Observable<void> {
+    // Based on documentation, to edit one field use patch
+    // To edit all fields, use put
+    // For PUT, PATCH and POST =The data is sent as second parameter
+    return this.httpClient.patch<void>(`${this.url}/${id}`,{
+      // If the key and value is the same it can be shortemed
+      price
+    })
+  }
+
 
   convertDTOtoProduct(dto: ProductDTO) : Product {
     console.log(dto);
