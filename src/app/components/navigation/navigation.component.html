@@ -1,14 +1,21 @@
 <nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid container">
-      <a class="navbar-brand" routerLink="/product">LazadaMall</a>
+      <a class="navbar-brand">LazadaMall</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" routerLink="/">Home</a>
-          <a class="nav-link" routerLink="/about">About</a>
-          <a class="nav-link" routerLink="/cart">Cart</a>
+          <a class="nav-link active" routerLink="/"
+           routerLinkActive="text-primary" 
+           [routerLinkActiveOptions]="{ exact: true }">Home</a>
+          <a class="nav-link" routerLink="/about"
+           routerLinkActive="text-primary" 
+           [routerLinkActiveOptions]="{ exact: true }">About</a>
+          <a class="nav-link" 
+          routerLink="/cart" 
+          routerLinkActive="text-primary" 
+          [routerLinkActiveOptions]="{ exact: true }">Cart</a>
         </div>
       </div>
     </div>
