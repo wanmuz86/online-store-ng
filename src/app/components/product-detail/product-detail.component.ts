@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+
+import { CartService } from '../../services/cart.service';
+
+
 @Component({
   selector: 'app-product-detail',
   standalone: true,
@@ -21,7 +25,8 @@ export class ProductDetailComponent implements OnInit{
 
   constructor(private productService:ProductService,
     public authService:AuthService, 
-    public route:ActivatedRoute
+    public route:ActivatedRoute,
+    public cartService:CartService
     ){
 
   }
@@ -53,6 +58,9 @@ export class ProductDetailComponent implements OnInit{
       response => alert("Product successfully updated"),
       error => console.log("Something is wrong")
     )
+  }
+  buyProduct(product:Product){
+    this.cartService.addProduct(product)
   }
   
 }

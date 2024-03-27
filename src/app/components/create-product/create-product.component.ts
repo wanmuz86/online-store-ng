@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
@@ -12,10 +12,20 @@ import { priceRangeValidator } from '../../directives/price-range.directive';
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css'
 })
-export class CreateProductComponent {
+export class CreateProductComponent implements OnInit{
+
+
+  showPriceRangeHint = false;
 
   constructor(private productService: ProductService) {
 
+  }
+  ngOnInit(): void {
+    this.price.valueChanges.subscribe(price=>{
+      if (price){
+        this.showPriceRangeHint = price > 1 && price < 10000; // true
+      }
+    })
   }
 
   // 1) Create the form normally (with reactive)
