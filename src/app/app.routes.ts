@@ -6,10 +6,10 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { authGuard } from './guards/auth.guard';
-
+import { cartGuard } from './guards/cart.guard';
 export const routes: Routes = [
     {path:'about', component:AboutComponent},
-    {path:'cart', component:CartComponent},
+    {path:'cart', component:CartComponent, canDeactivate:[cartGuard]},
     {path:'products/:id', component:ProductDetailComponent},
     {path:'admin/products',component:CreateProductComponent,
     canActivate:[authGuard]},
