@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { priceRangeValidator } from '../../directives/price-range.directive';
 
 @Component({
   selector: 'app-create-product',
@@ -24,7 +25,8 @@ export class CreateProductComponent {
     name: new FormControl('', { nonNullable: true , 
       validators:Validators.required}),
     price: new FormControl<number | undefined>(undefined, 
-      { nonNullable: true, validators:[Validators.required, Validators.min(1)] }),
+      { nonNullable: true, validators:[Validators.required, 
+        priceRangeValidator()] }),
     image_url: new FormControl('', { nonNullable: true })
   })
 
