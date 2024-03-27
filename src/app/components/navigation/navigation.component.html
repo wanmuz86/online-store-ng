@@ -16,6 +16,12 @@
           routerLink="/cart" 
           routerLinkActive="text-primary" 
           [routerLinkActiveOptions]="{ exact: true }">Cart</a>
+          <a class="nav-link" 
+          routerLink="/admin/products" 
+          routerLinkActive="text-primary" 
+          [hidden]="!authService.isLoggedIn"
+          [routerLinkActiveOptions]="{ exact: true }">
+          Create Product</a>
         </div>
       </div>
     </div>
