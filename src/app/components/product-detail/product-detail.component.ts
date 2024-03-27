@@ -35,6 +35,14 @@ export class ProductDetailComponent implements OnInit{
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.product$ = this.productService.getProductById(id);
+
+    // Code to get query parameters
+    // From there example, I can use it to get data from API 
+    this.route.queryParamMap.subscribe(params=>{
+      console.log(params.get('sortOrder'));
+      console.log(params.get('page'));
+      console.log(params.get('size'));
+    });
   }
 
   changePrice(price:number){
