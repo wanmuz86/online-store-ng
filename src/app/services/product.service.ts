@@ -67,6 +67,15 @@ export class ProductService {
     })
   }
 
+  createProduct(name:string, price:number, imageUrl:string):Observable<void>{
+    let data = {
+      title:name,
+      price:price, 
+      image:imageUrl
+    }
+    return this.httpClient.post<void>(this.url,data)
+  }
+
 
   convertDTOtoProduct(dto: ProductDTO) : Product {
     

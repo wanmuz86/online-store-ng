@@ -3,19 +3,28 @@
 <hr>
 <form (ngSubmit)="createProduct()" [formGroup]="productForm">
     <div>
-        <label for="name" class="form-label mb-3">Name</label>
-        <input type="text" id="name" formControlName="name" class="form-control mb-3" placeholder="Enter product name">
+        <label for="name" class="form-label mb-3">Name *</label>
+        <input type="text" id="name" formControlName="name" class="form-control mb-3" placeholder="Enter product name" required>
+        <span *ngIf="name.touched && name.hasError('required')">
+            <small>The name is required</small>
+        </span>
     </div>
     <div>
-        <label for="price" class="form-label mb-3">Price</label>
-        <input type="number" id="price" formControlName="price" class="form-control mb-3" placeholder="Enter product price">
+        <label for="price" class="form-label mb-3">Price *</label>
+        <input type="number" id="price" formControlName="price" class="form-control mb-3" placeholder="Enter product price" required>
+        <span *ngIf="price.touched && price.hasError('required')">
+        <small>The price is required</small>
+        </span>
+        <span *ngIf="price.touched && price.hasError('min')">
+        <small>Minimum price should be USD 1</small>
+        </span>
     </div>
     <div>
         <label for="image_url" class="form-label mb-3">Image URL</label>
         <input type="text" id="image_url" formControlName="image_url" class="form-control mb-3" placeholder="Enter image url">
     </div>
     <div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Create</button>
     </div>
 </form>
 
