@@ -1,1 +1,22 @@
-<p>create-product works!</p>
+<div class="container py-3">
+<h2>Create Product</h2>
+<hr>
+<form (ngSubmit)="createProduct()" [formGroup]="productForm">
+    <div>
+        <label for="name" class="form-label mb-3">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control mb-3" placeholder="Enter product name">
+    </div>
+    <div>
+        <label for="price" class="form-label mb-3">Price</label>
+        <input type="number" id="price" formControlName="price" class="form-control mb-3" placeholder="Enter product price">
+    </div>
+    <div>
+        <label for="image_url" class="form-label mb-3">Image URL</label>
+        <input type="text" id="image_url" formControlName="image_url" class="form-control mb-3" placeholder="Enter image url">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+</div>

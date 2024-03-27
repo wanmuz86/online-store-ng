@@ -11,8 +11,7 @@ export const routes: Routes = [
     {path:'about', component:AboutComponent},
     {path:'cart', component:CartComponent, canDeactivate:[cartGuard]},
     {path:'products/:id', component:ProductDetailComponent},
-    {path:'admin/products',component:CreateProductComponent,
-    canActivate:[authGuard]},
+    {path:'admin/products',component:CreateProductComponent},
     // Default Routing
     {path:'', component:ProductListComponent},
     //Wildcard routing
