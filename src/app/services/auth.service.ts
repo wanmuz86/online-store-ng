@@ -11,12 +11,12 @@ export class AuthService {
   constructor(private httpClient:HttpClient) { }
 
 
-  login(): Observable<string>{
+  login(username:string,password:string): Observable<string>{
     // <string> => data type received from the server
     return this.httpClient.post<string>(`${this.baseUrl}/login`,
     {
-      username:'david_r',
-      password:'3478*#54'
+      username:username,
+      password:password
     }  ).pipe(
       tap( token => {
         this.token = token;

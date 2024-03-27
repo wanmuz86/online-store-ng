@@ -1,7 +1,11 @@
 <div class="container mt-3">
     <!-- It will be hidden when user is logged in , true-->
-<button (click)="loginPressed()" [hidden]="this.authService.isLoggedIn">Login</button>
+<div [hidden]="this.authService.isLoggedIn">
+    <input type="text" class="form-control mb-3" placeholder="Enter username" [(ngModel)]="username" name="username">
+    <input type="password" class="form-control mb-3" placeholder="Enter password" [(ngModel)]="password" name="password">
+<button (click)="loginPressed(username,password)" >Login</button>
 <!-- If user is not login , hidden should be false -->
+</div>
 <div>
 <p [hidden]="!this.authService.isLoggedIn">    
     Hi, Admin <button (click)="logoutPressed()" >Logout</button>
